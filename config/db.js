@@ -10,9 +10,10 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true
     });
-    console.log("DB connected...");
+    console.log("DB connected.");
   } catch (error) {
     console.log("Error in connecting to DB.");
+    console.error(error.message);
     process.exit(1);
   }
 };
