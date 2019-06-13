@@ -10,7 +10,7 @@ const { check, validationResult } = require("express-validator/check");
 
 //@route POST api/user
 //@access public
-//@desc   Register User
+//@desc   Register a new User
 router.post(
   "/",
   [
@@ -60,6 +60,7 @@ router.post(
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
 
+      //saving it to DB.
       await user.save();
 
       const payload = {
