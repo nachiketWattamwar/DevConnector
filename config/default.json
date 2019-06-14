@@ -1,4 +1,6 @@
 {
   "MongoURI": "mongodb+srv://nachiket:nachiket@devconnector-mtawq.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "mySecret"
+  "jwtSecret": "mySecret",
+  "githubClientID": "f24653a6a15a642cc3d3",
+  "githubSecret": "70526ac96e7c14f7318d52883b459b399c1ffb9c"
 }
