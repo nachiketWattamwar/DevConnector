@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { login } from "../../actions/auth";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-const Login = ({ login, isAutheticated }) => {
+const Login = ({ login, auth }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -19,8 +19,9 @@ const Login = ({ login, isAutheticated }) => {
     console.log("SUCCESS");
     login(email, password);
   };
+  console.log("==============auth==============", auth);
 
-  if (isAutheticated) {
+  if (auth.isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
   return (
@@ -60,11 +61,11 @@ const Login = ({ login, isAutheticated }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAutheticated: PropTypes.bool
+  auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({
-  isAutheticated: state.auth.isAutheticated
+  auth: state.auth
 });
 export default connect(
   mapStateToProps,
