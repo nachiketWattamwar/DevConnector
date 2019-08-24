@@ -15,7 +15,8 @@ router.get("/me", auth, async (req, res) => {
       "user",
       ["name", "avatar"]
     );
-
+    console.log("=================user.id=============", req.user.id);
+    console.log("=====================profile============", profile);
     if (!profile) {
       res.status(400).json({ msg: "There is no profile." });
     } else {
