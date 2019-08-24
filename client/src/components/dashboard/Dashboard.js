@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 
@@ -19,6 +20,16 @@ const Dashboard = ({
       <p className='lead'>
         <i className='fas fa-user'></i>Welcome {user && user.name}
       </p>
+      {profile !== null ? (
+        <Fragment>has</Fragment>
+      ) : (
+        <Fragment>
+          <p>You do not have a profile. Please create one :)</p>
+          <Link to='/create-profile' className='btn btn-primary my-1'>
+            Create Profile
+          </Link>
+        </Fragment>
+      )}
     </Fragment>
   );
 };
