@@ -4,6 +4,7 @@ const request = require("request");
 const config = require("config");
 const auth = require("../../middleware/auth");
 const Profile = require("../../models/Profile");
+const User = require("../../models/User");
 const { check, validationResult } = require("express-validator/check");
 
 //@route GET api/profile/me
@@ -67,7 +68,7 @@ router.post(
     //build profile object.
     const profileFields = {};
 
-    profileFields.id = req.user.id;
+    profileFields.user = req.user.id;
     if (company) profileFields.company = company;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
@@ -109,7 +110,7 @@ router.post(
 
       await profile.save();
 
-      return res.json(profile);
+      return res.status(200).json(profile);
     } catch (err) {
       console.error(err.message);
     }

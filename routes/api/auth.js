@@ -65,8 +65,8 @@ router.post(
 
       const payload = {
         user: {
-          id: user.id,
-          email: user.email
+          id: user.id
+          // email: user.email
         }
       };
 
