@@ -134,6 +134,59 @@ router.get("/", async (req, res) => {
   }
 });
 
+//@route GET api/profile/user/:user_id
+//@access public
+//@desc   Get profile by userid.
+
+router.get("/user/:user_id", async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id
+    }).populate("test.user", ["name", "avatar"]);
+    if (!profile) {
+      return res.status(400).json({ msg: "There is no profile for this." });
+    }
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("server error.");
+  }
+});
+
+//@route PUT api/profile/experience
+//@access Private
+//@desc   Add profile exp.
+
+router.put("/experience", auth, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  console.log("inside exp ");
+  const { title, company, location, from, to, current, description } = req.body;
+  const newExp = {
+    title,
+    company,
+    location,
+    from,
+    to,
+    current,
+    description
+  };
+
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    profile.experience.unshift(newExp);
+    await profile.save();
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ errors: errors.array() });
+  }
+});
+
 //@route DELETE api/profile/
 //@access private
 //@desc   delete profile,user and posts.
