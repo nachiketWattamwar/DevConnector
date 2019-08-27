@@ -28,4 +28,20 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
+//@route GET api/posts
+//@access private
+//@desc   get all posts
+router.get("/", auth, async (req, res) => {
+  //res.send("inside posts router ");
+
+  try {
+    const posts = await Post.find().sort({ date: -1 });
+
+    res.json(posts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json("server error");
+  }
+});
+
 module.exports = router;
