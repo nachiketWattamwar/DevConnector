@@ -18,6 +18,7 @@ import setAuthToken from "./utils/setAuthToken";
 import PrivateRoute from "./components/routing/PrivateRoute";
 if (localStorage.token) {
   setAuthToken(localStorage.token);
+  console.log("===================inside auth token");
 }
 const App = () => {
   useEffect(() => {

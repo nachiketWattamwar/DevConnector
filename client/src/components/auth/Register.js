@@ -24,33 +24,16 @@ const Register = ({ setAlert, register, auth }) => {
     if (password !== password2) {
       setAlert("passwords do not match", "danger");
     } else {
-      register({ name, email, password });
-      // const newUser = {
-      //   name,
-      //   email,
-      //   password
-      // };
-
-      // try {
-      //   const config = {
-      //     headers: {
-      //       "Content-Type": "application/json"
-      //     }
-      //   };
-      //   const body = JSON.stringify(newUser);
-      //   const res = await axios.post("/api/users", body, config);
-      //   console.log("response data is ", res.data);
-      // } catch (error) {
-      //   console.log(error.reponse.data);
-      // }
-
+      await register({ name, email, password });
       console.log("SUCCESS");
     }
   };
-
-  if (auth.isAutheticated) {
+  console.log("================outside auth  register====", auth);
+  if (auth.isAuthenticated) {
+    console.log("================inside auth  register=================");
     return <Redirect to='/dashboard' />;
   }
+
   return (
     <Fragment>
       <h1 className='large text-primary'>Sign Up</h1>

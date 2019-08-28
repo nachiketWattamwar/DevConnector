@@ -19,7 +19,6 @@ const Login = ({ login, auth }) => {
     console.log("SUCCESS");
     login(email, password);
   };
-  console.log("==============auth==============", auth);
 
   if (auth.isAuthenticated) {
     return <Redirect to='/dashboard' />;
