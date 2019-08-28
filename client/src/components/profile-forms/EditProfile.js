@@ -31,7 +31,7 @@ const EditProfile = ({
       website: loading || !profile.website ? "" : profile.website,
       location: loading || !profile.location ? "" : profile.location,
       status: loading || !profile.status ? "" : profile.statue,
-      skills: loading || !profile.skills ? "" : profile.skills,
+      skills: loading || !profile.skills ? "" : profile.skills.join(","),
       githubusername:
         loading || !profile.githubusername ? "" : profile.githubusername,
       facebook: loading || !profile.facebook ? "" : profile.facebook,
@@ -40,7 +40,7 @@ const EditProfile = ({
       instagram: loading || !profile.instagram ? "" : profile.instagram,
       youtube: loading || !profile.youtube ? "" : profile.youtube
     });
-  });
+  }, [loading]);
 
   const {
     company,
@@ -60,7 +60,7 @@ const EditProfile = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = e => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
   return (
     <Fragment>
