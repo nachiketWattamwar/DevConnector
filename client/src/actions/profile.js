@@ -28,6 +28,7 @@ export const getCurrentProfile = () => async dispatch => {
 export const getProfiles = () => async dispatch => {
   try {
     const res = await axios.get(`/api/profile`);
+    console.log("===============res is =====================", res.data);
     dispatch({
       type: GET_ALL_PROFILES,
       payload: res.data

@@ -123,10 +123,8 @@ router.post(
 
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("test.user", [
-      "name",
-      "avatar"
-    ]);
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    console.log("================all profiles===========", profiles);
     res.json(profiles);
   } catch (error) {
     console.error(error);
@@ -163,7 +161,6 @@ router.put("/experience", auth, async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  console.log("inside exp ");
   const { title, company, location, from, to, current, description } = req.body;
   const newExp = {
     title,
