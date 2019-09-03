@@ -6,6 +6,7 @@ atlas.
 
 Session management and state information is stored in Redux and and front-end is developed in ReactJS.
 Passwords are encrypted using BcryptJS and token management is done using JSON Web Tokens(JWT).
+Currently Mongo Atlas is used to stored data of users.
 
 
 
